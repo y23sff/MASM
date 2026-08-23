@@ -11,11 +11,15 @@ masm supports
 * arm-arm64
 * rv64gc-rv32gc
 * more will be come
+  
 formats:
+
 * elf64-elf32
 * coff
 * wasm32 wasm64
-parser:
+
+parsers:
+
 * X26
 * X26A
 
@@ -59,71 +63,48 @@ which is more modern and has big features
     mov byte r1 40
 
 ### here is the first version of the X26A syntax:
-
-    #ifndef <def>
-    #define <def>
-    #ifdef <def>
-    #endif
-    #extern <label>
-    #export <label>
-    <label>:
-    .section <section>
-    <label>: resb
-    <label>: string
-    <label>: constString
-    <label>: number
-    <label>: constNumber
-
+```c
+#ifndef <def>
+#define <def>
+#ifdef <def>
+#endif
+#extern <label>
+#export <label>
+<label>:
+.section <section>
+<label>: resb
+<label>: string
+<label>: constString
+<label>: number
+<label>: constNumber
+```
 ### X26A syntax has speacial defs
 
-    _FORMAT_<FORMAT NAME>
-    _ARCH_<ARCH NAME>
+the speacial defs for the X26A is to make easy to easy way to learn target arch or format
+```s
+_FORMAT_<FORMAT NAME>
+_ARCH_<ARCH NAME>
+```
 
 ### X26A bit width selection
 
-    x26a have auto bit width selection for cross arch programs for example
-    
-    mov r0 50 | x86    | mov eax, 50
-    
-    mov r0 50 | x86_64 | mov rax, 50
-    
-    these are same for the arm arm64 etc...
-    
-### X26A optimizer !!!NEW(v0.1.0 stable) for testing here is the problem
+X26A has a automatic bit width selection for example
+```s
+mov qword r0 r1 ; can be used
+mov r0 r1 ; recommended it can be casted in to 32 16 8 and more bits
+```
+this is a good feature if you are going to write code for multiaple arch with diffirent bit widths
 
-    think a assembly file with 1000 nops when we assemble it with X26A Optimzer
+### X26A optimizer !!!NEW(v0.1.0 stable) for testing2
 
-    we should get 
-    push tmp
-    mov tmp, N
-    __masm_nop<k>:
-    nop
-    dec tmp
-    test tmp, tmp
-    jnz __masm_nop<k>
-    pop tmp
-
-    deadcode clearing basicly deletes un used code
-
-    .section .text
-    #export _start
-    _start:
-    mov r1, 7
-    jmp over
-    mov r1, 99 ; dead
-    add r1, 55 ; dead
-    sub r1, 13 ; dead
-    over:
-    mov r0, 60
-    syscall
-    
-    and X26A optimzer will be getting more features
+X26A now has a optimizer with
+* dead code cleaning
+* adding loops
 
 #### THE PROBLEM WITH X26A OPTIMIZER
 
-while the dead code can be jumped from another program
-the main problem is the 1000 nops opt the machine will be run not like normally
-but its a feature not a assembler
+while the dead code can be used to jumped from another program
+the main problem is the 1000 nops optimizer make the machine behave diffirently
 
 ## FORMAT MODULES & ARCH MODULES
 
@@ -133,15 +114,21 @@ for format modules you should add link function and register it
 about rel if you dont like any of it just write it in to enum in core.h
 
 # BUG FIXES
-fixed
+fixed (v0.1.0 stable)
 1. we fixed 4 gib bss bug
 2. parser errors added
-3. dynamic relocs and sym added removed tables
-commiting now! so wait 1 hour or so
+3. dynamic relocs and sym added removed arrays
 
 # PROJECTS
 we are working on GALC(grammar languange creator) which uses this project as a backend
 
 # COMMIT HELL
-my original accounts name changed it caused a bug i think so yusufesadaykan-spec is me not others
-btw we are commiting on a other repo so if there is less commits do not care about that
+my original accounts name changed it caused a bug i think so yusufesadaykan-spec is me
+
+# DEVELOPMENT
+this is the public version of the MASM
+we are building the MASM in a private repo
+
+# LICENSE
+MASM currently using *MIT* license
+
