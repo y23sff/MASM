@@ -37,7 +37,7 @@ masm supports new assembly syntaxes so you can build your own
 we are currently using X26 as default but we are currently testing X26A syntax
 which is more modern and has big features
 
-X26 syntax supports:
+### X26 syntax supports:
 
     .globl <label>
     <label>:
@@ -48,7 +48,7 @@ X26 syntax supports:
     <label>: number
     <label>: constNumber
 
-X26 static bit width selection
+### X26 static bit width selection
 
     x26 syntax uses bit width for example
 
@@ -57,7 +57,7 @@ X26 static bit width selection
     mov word r1 50
     mov byte r1 40
 
-here is the first version of the X26A syntax:
+### here is the first version of the X26A syntax:
 
     #ifndef <def>
     #define <def>
@@ -73,21 +73,22 @@ here is the first version of the X26A syntax:
     <label>: number
     <label>: constNumber
 
-X26A syntax has speacial defs
+### X26A syntax has speacial defs
+
     _FORMAT_<FORMAT NAME>
     _ARCH_<ARCH NAME>
 
-X26A bit width selection
+### X26A bit width selection
 
     x26a have auto bit width selection for cross arch programs for example
-
-mov r0 50 | x86    | mov eax, 50
-
-mov r0 50 | x86_64 | mov rax, 50
-
-these are same for the arm arm64 etc...
-
-X26A optimizer !!!NEW(v0.1.0 stable)
+    
+    mov r0 50 | x86    | mov eax, 50
+    
+    mov r0 50 | x86_64 | mov rax, 50
+    
+    these are same for the arm arm64 etc...
+    
+### X26A optimizer !!!NEW(v0.1.0 stable) for testing here is the problem
 
     think a assembly file with 1000 nops when we assemble it with X26A Optimzer
 
@@ -116,6 +117,12 @@ X26A optimizer !!!NEW(v0.1.0 stable)
     syscall
     
     and X26A optimzer will be getting more features
+
+#### THE PROBLEM WITH X26A OPTIMIZER
+
+while the dead code can be jumped from another program
+the main problem is the 1000 nops opt the machine will be run not like normally
+but its a feature not a assembler
 
 ## FORMAT MODULES & ARCH MODULES
 
