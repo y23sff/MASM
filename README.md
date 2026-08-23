@@ -44,23 +44,28 @@ which is more modern and has big features
 
 ### X26 syntax supports:
 
-    .globl <label>
-    <label>:
-    .section <section>
-    <label>: resb
-    <label>: string
-    <label>: constString
-    <label>: number
-    <label>: constNumber
+```s
+.globl <label>
+<label>:
+.section <section>
+<label>: resb
+<label>: string
+<label>: constString
+<label>: number
+<label>: constNumber
+```
 
 ### X26 static bit width selection
 
-    x26 syntax uses bit width for example
+X26 uses static bit width selection
+```s
+mov qword r0 50
+mov dword r0 40
+mov word r1 50
+mov byte r1 40
 
-    mov qword r0 50
-    mov dword r0 40
-    mov word r1 50
-    mov byte r1 40
+mov r0 50 ; no bad boy
+```
 
 ### here is the first version of the X26A syntax:
 ```c
