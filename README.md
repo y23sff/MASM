@@ -101,6 +101,20 @@ X26A optimizer !!!NEW(v0.1.0 stable)
     jnz __masm_nop<k>
     pop tmp
 
+    deadcode clearing basicly deletes un used code
+
+    .section .text
+    #export _start
+    _start:
+    mov r1, 7
+    jmp over
+    mov r1, 99 ; dead
+    add r1, 55 ; dead
+    sub r1, 13 ; dead
+    over:
+    mov r0, 60
+    syscall
+    
     and X26A optimzer will be getting more features
 
 ## FORMAT MODULES & ARCH MODULES
