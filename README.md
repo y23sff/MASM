@@ -21,7 +21,8 @@ parser:
 
 # LLM Policy
 masm accepts llm pr requests not pushes
-use ai i dont care
+use ai i dont care use it as a tool i do! 
+for tables and some hardcoded thinks
 
 # MODULES
 
