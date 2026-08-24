@@ -124,9 +124,6 @@ fixed (v0.1.0 stable)
 2. parser errors added
 3. dynamic relocs and sym added removed arrays
 
-# PROJECTS
-we are working on GALC(grammar languange creator) which uses this project as a backend
-
 # COMMIT HELL
 my original accounts name changed it caused a bug i think so yusufesadaykan-spec is me
 
